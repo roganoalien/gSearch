@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Google Custom Search</title>
+  <style>
+    .buscador {
+      padding: 1.5em 2em 1em;
+      background: rgba(0,0,0,.1);
+    }
+    .gsc-input, .gsc-input-box {
+      outline: none;
+      background: rgba(255,255,255,0.1);
+      border: 0 solid transparent !important;
+      padding: 1em;
+    }
+    .gsc-search-button,
+    .gsc-search-button {
+      padding: 1em;
+      outline: none;
+    }
+    .gsc-search-button-v2 {
+      padding: 18px 46px !important;
+    }
+    .gsc-input-box:active {
+      box-shadow: 0;
+    }
+    .gsc-input {
+      background: transparent !important;
+    }
+    .gsc-input-box-focus,
+    .gsc-input-box-hover {
+      box-shadow: 0 !important;
+      border: 1px solid red;
+    }
+    .gsc-result-info,
+    .gcsc-branding {
+      display: none;
+    }
+    .gscb_a {
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="buscador">
+    <script>
+      (function() {
+        var cx = '007288923180165117580:rpguyh0g21g';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+            '//cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+    <!-- <gcse:searchbox enableAutoComplete="true"></gcse:searchbox> -->
+    <!-- <div class="gcse-searchbox" newWindow="true" data-resultsUrl="https://www.google.com" data-newWindow="true" data-queryParameterName="search"></div> -->
+  </div>
+  <div class="resultados">
+    <gcse:searchresults-only defaultToImageSearch="true" autoSearchOnLoad="true" imageSearchResultSetSize="large" imageSearchLayout="column" disableWebSearch="true" noResultsString="Parece que no se encontró lo que buscabas"></gcse:searchresults>
+  </div>
+</body>
+</html>
