@@ -2,60 +2,51 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Test</title>
-  <style>
-    p {
-      margin: 0;
-      padding: 0;
-    }
-    div {
-      margin: 1em 0;
-      padding: 0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <style>
+        p {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            margin: 1em 0;
+            padding: 0;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 </head>
 <body>
-  <div id="content"></div>
-  <div id="content2"></div>
-  <div id="content3"></div>
-  <div id="content4"></div>
-  <script>
-    function hndlr(response) {
-      for (var i = 0; i < response.items.length; i++) {
-        var item = response.items[i];
-        //in production code, item.htmlTitle should have the HTML entities escaped
-        document.getElementById('content').innerHTML += "<p>" + item.link + "</p>" + "<p>" + item.image.thumbnailLink + "</p>";
-      }
+<!--<div id="content"></div>-->
+<!--<div id="content2"></div>-->
+<!--<div id="content3"></div>-->
+<!--<div id="content4"></div>-->
+<script>
+    var result = [];
+    function hola(){
+
+        var hashtags = ['pikachu', 'caterpie', 'charmander', 'pidgey'];
+
+        $.each(hashtags, function(index, value){
+            console.log(value);
+            var s = document.createElement('script');
+            s.src='https://www.googleapis.com/customsearch/v1?key=AIzaSyA20z0Mpysoutt2xsJdaf7brXUOCpTr9DU&cx=007288923180165117580:rpguyh0g21g&q='+value+'&num=1&searchType=image&imgSize=large&imgColorType=gray&callback=magia';
+            document.getElementsByTagName('head')[0].appendChild(s);
+        });
+//        console.log(result);
     }
-    function hndlr2(response) {
-      for (var i = 0; i < response.items.length; i++) {
-        var item = response.items[i];
-        //in production code, item.htmlTitle should have the HTML entities escaped
-        document.getElementById('content2').innerHTML += "<p>" + item.link + "</p>" + "<p>" + item.image.thumbnailLink + "</p>";
-      }
+    function magia(response){
+        console.log(response);
+        var single = {};
+        for (var i = 0; i < response.items.length; i++) {
+            var item = response.items[i];
+            single.image = item.link;
+            single.thumbnail = item.image.thumbnailLink;
+            result.push(single);
+        }
     }
-    function hndlr3(response) {
-      for (var i = 0; i < response.items.length; i++) {
-        var item = response.items[i];
-        //in production code, item.htmlTitle should have the HTML entities escaped
-        document.getElementById('content3').innerHTML += "<p>" + item.link + "</p>" + "<p>" + item.image.thumbnailLink + "</p>";
-      }
-    }
-    function hndlr4(response) {
-      for (var i = 0; i < response.items.length; i++) {
-        var item = response.items[i];
-        //in production code, item.htmlTitle should have the HTML entities escaped
-        document.getElementById('content4').innerHTML += "<p>" + item.link + "</p>" + "<p>" + item.image.thumbnailLink + "</p>";
-      }
-    }
-  </script>
-  <!-- <script src="https://www.googleapis.com/customsearch/v1?key=AIzaSyA20z0Mpysoutt2xsJdaf7brXUOCpTr9DU&cx=007288923180165117580:rpguyh0g21g&q=pikachu&callback=hndlr"> -->
-  <script src="https://www.googleapis.com/customsearch/v1?key=AIzaSyA20z0Mpysoutt2xsJdaf7brXUOCpTr9DU&cx=007288923180165117580:rpguyh0g21g&q=pikachu&num=1&searchType=image&imgSize=large&imgColorType=gray&callback=hndlr"></script>
-  <script src="https://www.googleapis.com/customsearch/v1?key=AIzaSyA20z0Mpysoutt2xsJdaf7brXUOCpTr9DU&cx=007288923180165117580:rpguyh0g21g&q=caterpie&num=1&searchType=image&imgSize=large&imgColorType=gray&callback=hndlr2"></script>
-  <script src="https://www.googleapis.com/customsearch/v1?key=AIzaSyA20z0Mpysoutt2xsJdaf7brXUOCpTr9DU&cx=007288923180165117580:rpguyh0g21g&q=pidgey&num=1&searchType=image&imgSize=large&imgColorType=gray&callback=hndlr3"></script>
-  <script src="https://www.googleapis.com/customsearch/v1?key=AIzaSyA20z0Mpysoutt2xsJdaf7brXUOCpTr9DU&cx=007288923180165117580:rpguyh0g21g&q=charmander&num=1&searchType=image&imgSize=large&imgColorType=gray&callback=hndlr4"></script>
-  </script>
+
+</script>
 </body>
 
 </html>
